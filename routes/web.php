@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CourseController;
+use App\Http\Controllers\StudentController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -11,29 +13,17 @@ Route::get('/hello', function () {
     return 'Hello Laravel';
 });
 
-Route::get('/students', function () {
-    return 'All Students';
-});
+// Exercise 5: Student routes handled by StudentController
+// /students/create must come before /students/{id}, otherwise "create" is taken as an id
+Route::get('/students', [StudentController::class, 'index']);
+Route::get('/students/create', [StudentController::class, 'create']);
+Route::get('/students/{id}', [StudentController::class, 'show']);
+Route::post('/students', [StudentController::class, 'store']);
+Route::put('/students/{id}', [StudentController::class, 'update']);
+Route::delete('/students/{id}', [StudentController::class, 'destroy']);
 
-Route::get('/students/{id}', function ($id) {
-    return "Student ID: {$id}";
-});
-
-Route::get('/courses/{courseId}/students', function ($courseId) {
-    return "Students of Course ID: {$courseId}";
-});
-
-Route::post('/students', function () {
-    return 'Student Created';
-});
-
-Route::put('/students/{id}', function ($id) {
-    return "Student Updated: {$id}";
-});
-
-Route::delete('/students/{id}', function ($id) {
-    return "Student Deleted: {$id}";
-});
+// Exercise 5: Course routes handled by CourseController
+Route::get('/courses/{courseId}/students', [CourseController::class, 'students']);
 
 // Exercise 4: Route parameters and constraints
 Route::get('/products/{id}', function ($id) {
