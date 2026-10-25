@@ -34,3 +34,12 @@ Route::put('/students/{id}', function ($id) {
 Route::delete('/students/{id}', function ($id) {
     return "Student Deleted: {$id}";
 });
+
+// Exercise 4: Route parameters and constraints
+Route::get('/products/{id}', function ($id) {
+    return "Product ID: {$id}";
+})->whereNumber('id');
+
+Route::get('/students/{id}/edit', function ($id) {
+    return "Edit Student ID: {$id}";
+});
