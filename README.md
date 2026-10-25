@@ -11,7 +11,7 @@ Laravel lab project for **PAU – Web and Mobile Apps Development 2 (2026)**: ro
 ## How to run
 
 ```bash
-git clone https://github.com/<your-username>/campus-lab.git
+git clone https://github.com/yazanjoulani77-cell/campus-lab.git
 cd campus-lab
 composer install
 cp .env.example .env        # Windows: copy .env.example .env
