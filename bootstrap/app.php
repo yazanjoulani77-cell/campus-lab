@@ -12,7 +12,11 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
-        //
+        // Allow POST/PUT/DELETE testing from Postman/curl without a CSRF token (lab only)
+        $middleware->validateCsrfTokens(except: [
+            'students',
+            'students/*',
+        ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         $exceptions->shouldRenderJsonWhen(
